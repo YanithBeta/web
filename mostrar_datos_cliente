@@ -1,0 +1,22 @@
+<?php
+include('conec.php'); // Conexión a la base de datos
+
+// Consulta para obtener todos los clientes
+$sql = "SELECT * FROM clientes";
+$result = mysqli_query($conn, $sql);
+
+// Verificamos si la consulta tuvo resultados
+if (mysqli_num_rows($result) > 0) {
+    // Generamos las filas de la tabla para cada cliente
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>
+                <td>{$row['id_cliente']}</td>
+                <td>{$row['nombre']}</td>
+                <td>{$row['telefono']}</td>
+                <td>{$row['correo']}</td>
+              </tr>";
+    }
+} else {
+    echo "<tr><td colspan='4'>No hay clientes registrados.</td></tr>";
+}
+?>
